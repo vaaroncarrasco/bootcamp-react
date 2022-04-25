@@ -71,7 +71,10 @@ p.then(d => {
   console.log(r)
 })
 
-p.then( d => d.json() ).then( r => console.log(r)).catch(err => console.log(err));
+p.then( a => d.json() )
+ .then( b => console.log(r) )
+ .catch( err => console.log(err) )
+ .finally( c => console.log('done: ', c) );
 
 /*
 
