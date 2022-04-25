@@ -23,6 +23,13 @@ why we commonly say that a promise is an object that produces a value in the fut
     2. Fulfilled: Promise has been resolved succesfully.
     3. Rejected: Promise was not resolved.
     4. Settled: When promise has been finished succesfully or with an error.
+
+* There are 3 methos to handle this states:
+    1. .then(): Run callback when promise was fulfilled
+    1. .catch(): Run callback when promise was rejected
+    1. .finally(): Run callback regardless of it being rejected|fulfilled.
+
+
 */
 
 let p = fetch('https://api.github.com/users/codigofacilito');
@@ -45,3 +52,36 @@ p.catch(function(err){
 p.finally(function(d){
   console.log('Async task done.')
 })
+
+
+// ? Chaining promises: Avoid nesting fns inside of other fns.
+// Keep promise chain at one level.
+
+// ! DO NOT CHAIN THEM INSIDE EACH OTHER
+p.then(d => {
+  d.json().then(r => {
+    console.log(r)
+  })
+});
+
+// * CHAIN THEM FROM THE OUSTIDE/SURFACE
+p.then(d => {
+  d.json()
+}).then(r => {
+  console.log(r)
+})
+
+p.then( d => d.json() ).then( r => console.log(r)).catch(err => console.log(err));
+
+/*
+
+* Note:
+
+It is worth mentioning that when we chain promises, the next asynchronous operation is executed,
+until the previous one has finished. That's why we only chain promises when one async task depends
+on or needs another to finish.
+
+If, on the other hand, you want to launch multiple asynchronous operations that don't depend on each
+other, it's better to use Promise.all()
+
+*/
