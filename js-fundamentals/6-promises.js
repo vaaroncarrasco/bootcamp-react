@@ -71,8 +71,8 @@ p.then(d => {
   console.log(r)
 })
 
-p.then( a => d.json() )
- .then( b => console.log(r) )
+p.then( a => a.json() )
+ .then( b => console.log(b) )
  .catch( err => console.log(err) )
  .finally( c => console.log('done: ', c) );
 
