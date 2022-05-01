@@ -26,8 +26,8 @@ why we commonly say that a promise is an object that produces a value in the fut
 
 * There are 3 methos to handle this states:
     1. .then(): Run callback when promise was fulfilled
-    1. .catch(): Run callback when promise was rejected
-    1. .finally(): Run callback regardless of it being rejected|fulfilled.
+    2. .catch(): Run callback when promise was rejected
+    3. .finally(): Run callback regardless of it being rejected|fulfilled.
 
 
 */
